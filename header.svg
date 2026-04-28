@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 400" width="100%" height="100%">
+  <defs>
+    <!-- تدرجات الألوان للإضاءة -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a14"/>
+      <stop offset="100%" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="cyanNeon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00ffff" stop-opacity="0.1"/>
+      <stop offset="50%" stop-color="#00ffff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00ffff" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="violetNeon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9b4dff" stop-opacity="0.1"/>
+      <stop offset="50%" stop-color="#9b4dff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#9b4dff" stop-opacity="0.1"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <!-- الخلفية المظلمة -->
+  <rect width="100%" height="100%" fill="url(#bgGrad)"/>
+
+  <!-- أرضية عاكسة (شكل شبه منحرف) -->
+  <polygon points="0,400 1600,400 1600,320 0,320" fill="#12122a" opacity="0.6"/>
+  
+  <!-- تأثير انعكاس الضوء على الأرضية -->
+  <ellipse cx="800" cy="360" rx="250" ry="20" fill="#9b4dff" filter="url(#softGlow)" opacity="0.15"/>
+  <ellipse cx="800" cy="355" rx="180" ry="12" fill="#00ffff" filter="url(#softGlow)" opacity="0.1"/>
+
+  <!-- القاعدة السداسية السوداء -->
+  <g transform="translate(800, 310)">
+    <polygon points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" fill="#0a0a0a" stroke="#1a1a1a" stroke-width="2"/>
+    <!-- ظل القاعدة -->
+    <polygon points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" fill="#000000" opacity="0.5" transform="translate(0, 8) scale(0.95)"/>
+  </g>
+
+  <!-- الإطار الأكريليكي المعلق (أربعة أضلاع) -->
+  <g transform="translate(800, 160)" filter="url(#glow)">
+    <!-- الضلع العلوي (بنفسجي) -->
+    <line x1="-60" y1="-50" x2="60" y2="-50" stroke="url(#violetNeon)" stroke-width="4" stroke-linecap="round"/>
+    <!-- الضلع السفلي (بنفسجي) -->
+    <line x1="-60" y1="50" x2="60" y2="50" stroke="url(#violetNeon)" stroke-width="4" stroke-linecap="round"/>
+    <!-- الضلع الأيسر (سماوي) -->
+    <line x1="-60" y1="-50" x2="-60" y2="50" stroke="url(#cyanNeon)" stroke-width="4" stroke-linecap="round"/>
+    <!-- الضلع الأيمن (سماوي) -->
+    <line x1="60" y1="-50" x2="60" y2="50" stroke="url(#cyanNeon)" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- المكعب الهولوغرامي الدوار (مبني بمضلعات شفافة) -->
+  <g transform="translate(800, 160)">
+    <g class="cube-rotate">
+      <!-- الوجه الأمامي -->
+      <polygon points="-25,-25 25,-25 25,25 -25,25" fill="none" stroke="rgba(0,255,255,0.4)" stroke-width="1.5"/>
+      <!-- الوجه العلوي (منظور) -->
+      <polygon points="-25,-25 0,-45 50,-45 25,-25" fill="none" stroke="rgba(155,77,255,0.3)" stroke-width="1.5"/>
+      <!-- الوجه الجانبي الأيمن -->
+      <polygon points="25,25 50,-5 50,-45 25,-25" fill="none" stroke="rgba(0,255,255,0.3)" stroke-width="1.5"/>
+      <!-- خطوط داخلية للتأثير الهولوغرامي -->
+      <line x1="-25" y1="0" x2="25" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+      <line x1="0" y1="-25" x2="0" y2="25" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+      <line x1="0" y1="-25" x2="25" y2="-45" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+      <line x1="25" y1="-25" x2="50" y2="-45" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+    </g>
+  </g>
+
+  <!-- جزيئات ضوئية متناثرة -->
+  <circle cx="720" cy="200" r="1.5" fill="#00ffff" opacity="0.5"/>
+  <circle cx="890" cy="180" r="1" fill="#9b4dff" opacity="0.6"/>
+  <circle cx="750" cy="130" r="1.2" fill="#ffffff" opacity="0.4"/>
+  <circle cx="850" cy="220" r="0.8" fill="#00ffff" opacity="0.3"/>
+
+  <!-- حركة المكعب بواسطة CSS -->
+  <style>
+    .cube-rotate {
+      transform-origin: 800px 160px;
+      animation: spin3d 12s infinite linear;
+    }
+    @keyframes spin3d {
+      0% { transform: rotateY(0deg) rotateX(15deg); }
+      100% { transform: rotateY(360deg) rotateX(15deg); }
+    }
+  </style>
+</svg>
